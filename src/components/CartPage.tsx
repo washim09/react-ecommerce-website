@@ -5,13 +5,12 @@ const CartPage = () => {
 
   console.log(cart); // Log the cart to inspect its structure and contents
 
-  const subtotal = cart
-    .reduce((acc, item) => {
-      const itemPrice =
-        typeof item.price === "string" ? parseFloat(item.price) : 0; // Parse price as a float if it's a string
-      return itemPrice ? acc : acc + itemPrice * Number(item.quantity);
-    }, 0)
-    .toFixed(2);
+  const subtotal = cart.reduce((acc, item) => {
+    const itemPrice = typeof item.price === "string" ? parseFloat(item.price) : item.price; // Parse price as a float if it's a string
+    return acc + itemPrice * Number(item.quantity);
+  }, 0).toFixed(2);
+  
+  
 
   console.log("Subtotal:", subtotal); // Log the subtotal to check its value
 
